@@ -1,7 +1,7 @@
 #!/bin/bash
 
 user=$(id -u)
-if [ $? -ne 0 ]; then 
+if [ $user -ne 0 ]; then 
     echo "please proceed with root user pprevilage"
     exit 1
 fi
