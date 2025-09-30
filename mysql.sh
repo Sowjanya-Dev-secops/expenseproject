@@ -13,3 +13,22 @@ script_file=$( echo $0 | cut -d "." -f1 )
 mkdir -p $logs_folder
 log_file=$logs_folder/$script_file.log
 echo "$log_file"
+
+validate(){
+    if [ $1 -ne 0 ]; then
+        echo "Error :: $2 is failled"
+    else
+        echo "SUCCESS :: $2 is success"
+    fi
+}
+dnf install mysql-server -y
+validate $? "Mysql Installation"
+
+systemctl enable mysqld
+validate $? "enable mysql"
+
+systemctl start mysqld
+validate $? "start mysql"
+
+mysql_secure_installation --set-root-pass ExpenseApp@1
+validate $? "set password"
