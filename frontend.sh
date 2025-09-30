@@ -33,9 +33,10 @@ systemctl start nginx &>>log_file
 validate $? "start nginx"
 rm -rf /usr/share/nginx/html/* &>>log_file
 validate $? "remove default nginx code"
-curl -o /tmp/frontend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2 &>>log_file
+curl -o /tmp/frontend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>log_file
 validate $? "download nginx code"
 cd /usr/share/nginx/html
+validate $? "change dir code"
 unzip /tmp/frontend.zip &>>log_file
 validate $? "unzip code"
 cp $Scrpt_Dir/expense.service /etc/nginx/default.d/expense.conf
