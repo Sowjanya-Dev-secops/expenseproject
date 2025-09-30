@@ -21,14 +21,14 @@ validate(){
         echo "SUCCESS :: $2 is success"
     fi
 }
-dnf install mysql-server -y
+dnf install mysql-server -y &>>log_file
 validate $? "Mysql Installation"
 
-systemctl enable mysqld
+systemctl enable mysqld &>>log_file
 validate $? "enable mysql"
 
-systemctl start mysqld
+systemctl start mysqld &>>log_file
 validate $? "start mysql"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1
+mysql_secure_installation --set-root-pass ExpenseApp@1 &>>log_file
 validate $? "set password"
