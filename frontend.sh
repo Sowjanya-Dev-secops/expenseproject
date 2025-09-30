@@ -26,11 +26,12 @@ validate(){
     fi
 }
 dnf install nginx -y &>>log_file
-validate $? "install nginx"
+validate $? "install nginx"s
+
 systemctl enable nginx &>>log_file
 validate $? "enable nginx"
-systemctl start nginx &>>log_file
-validate $? "start nginx"
+
+
 rm -rf /usr/share/nginx/html/* &>>log_file
 validate $? "remove default nginx code"
 curl -o /tmp/frontend.zip https://expense-joindevops.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip &>>log_file
