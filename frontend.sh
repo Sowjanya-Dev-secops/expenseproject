@@ -41,5 +41,6 @@ unzip /tmp/frontend.zip &>>log_file
 validate $? "unzip code"
 cp $Scrpt_Dir/expense.service /etc/nginx/default.d/expense.conf
 validate $? "copy system control"
+
 systemctl restart nginx &>>log_file
 validate $? "restart  nginx"
